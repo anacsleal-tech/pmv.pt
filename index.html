@@ -1,110 +1,487 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PMV Portugal | Facilitação & Sourcing de Moda</title>
-  <meta name="description" content="PMV é uma empresa portuguesa de facilitação e sourcing para a indústria de moda, ligando fábricas e marcas em Portugal, Espanha e Marrocos, com ambição global.">
-  <!-- Google Fonts - Inter for modern typography -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="css/style.css"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PMV Portugal | Fashion Sourcing &amp; Production Facilitation</title>
+<meta name="description" content="PMV connects fashion brands with vetted factories across Portugal, Spain and Morocco — sourcing, matching and production coordination handled hands-on.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1c1b1a;
+    --canvas:#efe9dd;
+    --paper:#f8f5ee;
+    --rust:#b23b23;
+    --steel:#3e5568;
+    --brass:#c89b3c;
+    --ink-soft:#524f49;
+    --line:#c9c1b0;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--canvas);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.55;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  h1,h2,h3{
+    font-family:'Archivo Black',sans-serif;
+    font-weight:400;
+    line-height:1.05;
+    letter-spacing:-.01em;
+    margin:0;
+  }
+  .eyebrow{
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    font-size:.8rem;
+    color:var(--rust);
+  }
+  .mono{
+    font-family:'IBM Plex Mono',monospace;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+  section{padding:96px 0;}
+  @media (max-width:720px){
+    section{padding:64px 0;}
+    .wrap{padding:0 20px;}
+  }
+
+  /* texture */
+  .weave{
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(28,27,26,0.035) 0px, rgba(28,27,26,0.035) 1px, transparent 1px, transparent 6px),
+      repeating-linear-gradient(90deg, rgba(28,27,26,0.035) 0px, rgba(28,27,26,0.035) 1px, transparent 1px, transparent 6px);
+    pointer-events:none;
+  }
+
+  /* header */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(239,233,221,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px;
+    max-width:1180px; margin:0 auto;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Archivo Black',sans-serif; font-size:1.05rem; letter-spacing:-.02em;
+  }
+  .brand .mark{
+    width:30px;height:30px;background:var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--canvas); font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:.85rem;
+    transform:rotate(-3deg);
+  }
+  nav.links{display:flex; gap:28px; font-family:'Barlow Condensed',sans-serif; font-weight:600; text-transform:uppercase; letter-spacing:.06em; font-size:.85rem;}
+  nav.links a{text-decoration:none; opacity:.8; transition:opacity .15s;}
+  nav.links a:hover{opacity:1; color:var(--rust);}
+  .cta-btn{
+    font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.06em;
+    background:var(--rust); color:var(--paper); border:none;
+    padding:11px 20px; font-size:.85rem; cursor:pointer; text-decoration:none;
+    display:inline-block;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .cta-btn:hover{background:#8f2e1b; transform:translateY(-2px);}
+  .cta-btn.ghost{background:transparent; color:var(--ink); border:1.5px solid var(--ink);}
+  .cta-btn.ghost:hover{background:var(--ink); color:var(--canvas);}
+  @media (max-width:820px){ nav.links{display:none;} }
+
+  /* hero */
+  .hero{position:relative; overflow:hidden; padding-top:110px; padding-bottom:80px;}
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:end; position:relative; z-index:2;
+  }
+  @media (max-width:900px){ .hero-grid{grid-template-columns:1fr;} }
+  .hero h1{font-size:clamp(2.4rem, 5.4vw, 4.1rem); margin-top:14px;}
+  .hero h1 span{color:var(--rust);}
+  .hero p.lead{
+    font-size:1.15rem; color:var(--ink-soft); max-width:46ch; margin-top:22px;
+  }
+  .hero-actions{display:flex; gap:14px; margin-top:34px; flex-wrap:wrap;}
+
+  /* ticket / tag signature element */
+  .ticket{
+    background:var(--paper);
+    border:1.5px solid var(--ink);
+    padding:22px;
+    position:relative;
+  }
+  .ticket::before{
+    content:"";
+    position:absolute; top:14px; right:14px; bottom:14px; left:14px;
+    border:1px dashed var(--line);
+    pointer-events:none;
+  }
+  .ticket .tag-hole{
+    position:absolute; top:22px; left:-11px;
+    width:22px; height:22px; border-radius:50%;
+    background:var(--canvas); border:1.5px solid var(--ink);
+  }
+  .ticket-row{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding:9px 0; border-bottom:1px solid var(--line);
+    font-family:'IBM Plex Mono',monospace; font-size:.82rem;
+  }
+  .ticket-row:last-child{border-bottom:none;}
+  .ticket-row .k{color:var(--ink-soft); text-transform:uppercase; letter-spacing:.05em; font-size:.72rem;}
+  .ticket-row .v{font-weight:500; text-align:right;}
+  .ticket-title{
+    font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase;
+    letter-spacing:.08em; font-size:.82rem; color:var(--rust); margin-bottom:14px;
+  }
+
+  /* section headers */
+  .sec-head{max-width:640px; margin-bottom:52px;}
+  .sec-head h2{font-size:clamp(1.7rem,3.2vw,2.5rem); margin-top:12px;}
+  .sec-head p{color:var(--ink-soft); margin-top:14px; font-size:1.02rem;}
+
+  /* services grid */
+  .services{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--ink); border:1px solid var(--ink);
+  }
+  @media (max-width:900px){ .services{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .services{grid-template-columns:1fr;} }
+  .service-card{
+    background:var(--paper); padding:30px 24px; min-height:220px;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+  .service-card .code{font-family:'IBM Plex Mono',monospace; font-size:.75rem; color:var(--brass); font-weight:500;}
+  .service-card h3{font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:1.25rem; text-transform:uppercase; letter-spacing:.02em; margin-top:26px;}
+  .service-card p{color:var(--ink-soft); font-size:.92rem; margin-top:10px;}
+
+  /* process timeline (real sequence) */
+  .process{position:relative;}
+  .process-line{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:24px; position:relative;
+  }
+  @media (max-width:800px){ .process-line{grid-template-columns:1fr; gap:0;} }
+  .process-line::before{
+    content:""; position:absolute; top:17px; left:0; right:0; height:2px;
+    background:repeating-linear-gradient(90deg, var(--ink) 0 8px, transparent 8px 14px);
+  }
+  @media (max-width:800px){
+    .process-line::before{top:0; bottom:0; left:17px; width:2px; height:auto; right:auto;
+      background:repeating-linear-gradient(180deg, var(--ink) 0 8px, transparent 8px 14px);}
+  }
+  .p-step{position:relative; padding-top:52px;}
+  @media (max-width:800px){ .p-step{padding-top:0; padding-left:52px; padding-bottom:36px;} }
+  .p-num{
+    width:36px; height:36px; border-radius:50%; background:var(--ink); color:var(--canvas);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono',monospace; font-size:.85rem; font-weight:500;
+    position:absolute; top:0; left:0; z-index:2;
+  }
+  @media (max-width:800px){ .p-num{top:0; left:0;} }
+  .p-step h3{font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase; font-size:1.15rem; letter-spacing:.03em;}
+  .p-step p{color:var(--ink-soft); font-size:.92rem; margin-top:8px;}
+
+  /* network / routing */
+  .network{background:var(--ink); color:var(--canvas); position:relative; overflow:hidden;}
+  .network .sec-head p{color:#bfb9ab;}
+  .network .eyebrow{color:var(--brass);}
+  .route{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:0; margin-top:56px; flex-wrap:wrap; position:relative;
+  }
+  .route::before{
+    content:""; position:absolute; top:23px; left:24px; right:24px; height:1px;
+    background-image:repeating-linear-gradient(90deg, var(--brass) 0 10px, transparent 10px 18px);
+    z-index:0;
+  }
+  @media (max-width:760px){ .route::before{display:none;} }
+  .stop{
+    position:relative; z-index:1; background:var(--ink);
+    padding:0 18px; text-align:left; flex:1; min-width:200px;
+  }
+  .stop .dot{
+    width:14px; height:14px; border-radius:50%; background:var(--brass); margin-bottom:16px;
+    box-shadow:0 0 0 4px var(--ink), 0 0 0 5px var(--brass);
+  }
+  .stop h3{font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; font-weight:700; font-size:1.15rem; letter-spacing:.03em;}
+  .stop .role{font-family:'IBM Plex Mono',monospace; font-size:.72rem; color:var(--brass); text-transform:uppercase; letter-spacing:.06em; margin-top:6px; display:block;}
+  .stop p{color:#a9a297; font-size:.88rem; margin-top:10px; max-width:26ch;}
+
+  /* why us */
+  .why{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:start;}
+  @media (max-width:860px){ .why{grid-template-columns:1fr; gap:36px;} }
+  .why-list{list-style:none; margin:0; padding:0;}
+  .why-list li{
+    display:flex; gap:16px; padding:20px 0; border-bottom:1px solid var(--line);
+  }
+  .why-list li:first-child{padding-top:0;}
+  .why-list .mk{font-family:'IBM Plex Mono',monospace; color:var(--rust); font-weight:500; flex-shrink:0;}
+  .why-list h4{font-family:'Barlow Condensed',sans-serif; font-weight:700; text-transform:uppercase; letter-spacing:.03em; font-size:1.02rem; margin:0 0 4px 0;}
+  .why-list p{margin:0; color:var(--ink-soft); font-size:.92rem;}
+
+  .partner-note{
+    font-family:'IBM Plex Mono',monospace; font-size:.85rem; color:var(--ink-soft);
+    border-left:2px solid var(--brass); padding:14px 20px; background:var(--paper); margin-top:28px;
+  }
+
+  /* company info strip */
+  .info-strip{background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .info-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+    border:1px solid var(--line);
+  }
+  @media (max-width:800px){ .info-grid{grid-template-columns:1fr 1fr;} }
+  .info-cell{padding:26px 24px; border-right:1px solid var(--line);}
+  .info-cell:nth-child(4n){border-right:none;}
+  @media (max-width:800px){
+    .info-cell:nth-child(2n){border-right:none;}
+    .info-cell{border-right:1px solid var(--line);}
+    .info-cell:nth-child(2n){border-right:none;}
+  }
+  .info-cell .k{font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:.06em; font-weight:700; font-size:.72rem; color:var(--rust);}
+  .info-cell .v{font-family:'IBM Plex Mono',monospace; font-size:.9rem; margin-top:8px;}
+  .procurement-note{
+    padding:22px 0 0 0; font-size:.85rem; color:var(--ink-soft); max-width:820px;
+  }
+
+  /* contact */
+  .contact-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:56px;}
+  @media (max-width:860px){ .contact-grid{grid-template-columns:1fr;} }
+  .contact-card{
+    background:var(--ink); color:var(--canvas); padding:40px; position:relative;
+  }
+  .contact-card .ticket-title{color:var(--brass);}
+  .contact-row{padding:14px 0; border-bottom:1px solid rgba(239,233,221,.15);}
+  .contact-row:last-child{border-bottom:none;}
+  .contact-row .k{font-family:'Barlow Condensed',sans-serif; text-transform:uppercase; letter-spacing:.06em; font-size:.72rem; color:var(--brass);}
+  .contact-row .v{font-family:'IBM Plex Mono',monospace; font-size:1rem; margin-top:6px;}
+  .contact-row a{text-decoration:none;}
+  .contact-row a:hover{color:var(--brass);}
+
+  footer{
+    padding:32px 0; text-align:center; font-size:.8rem; color:var(--ink-soft);
+    font-family:'IBM Plex Mono',monospace;
+  }
+
+  :focus-visible{outline:2.5px solid var(--rust); outline-offset:2px;}
+</style>
 </head>
 <body>
+
 <header>
-  <div class="container">
-    <div class="lang">
-      <span>PT</span> · <a href="index-en.html">EN</a>
-    </div>
-    <div class="logo-row">
-      <img src="assets/pmv-logo.png" alt="Logótipo PMV">
-      <div>
-        <h1>PMV Portugal</h1>
-        <div class="tagline">Fashion sourcing &amp; facilitation</div>
-      </div>
-    </div>
+  <div class="nav">
+    <div class="brand"><span class="mark">PMV</span> PMV Portugal</div>
+    <nav class="links">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#network">Network</a>
+      <a href="#why">Why PMV</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="cta-btn">Start a conversation</a>
   </div>
 </header>
 
-<main>
-  <section class="section">
-    <div class="container">
-      <h2>Integração Estratégica para a Indústria de Moda</h2>
-      <p>
-        A PMV é uma empresa sediada no Norte de Portugal, especializada
-        em integração estratégica entre marcas de moda e unidades produtivas. Atuamos como parceiro
-        operacional e industrial, conectando fábricas e empresas em <strong>Portugal, Espanha e Marrocos</strong>
-        para garantir soluções produtivas sólidas, competitivas e adaptadas às exigências do mercado global.
-      </p>
-      <p>
-        O nosso foco é claro: assegurar o alinhamento perfeito entre produto, fábrica e capacidade
-        produtiva, garantindo níveis superiores de qualidade, serviço e fiabilidade — exatamente
-        como o mercado internacional exige.
-      </p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <h2>O que fazemos</h2>
-      <ul>
-        <li><strong>Sourcing &amp; seleção de fábricas</strong> em Portugal, Espanha e Marrocos.</li>
-        <li><strong>Ligação operacional</strong> entre marcas, agentes e unidades produtivas.</li>
-        <li><strong>Apoio ao desenvolvimento</strong> de coleções, pré-custos, amostras e encomendas.</li>
-        <li><strong>Foco em preço e serviço</strong>, com relações de longo prazo e confiança mútua.</li>
-      </ul>
-      <p class="small">
-        A PMV colabora com vários grupos industriais, incluindo empresas de referência no setor têxtil
-        e de confecção, como a Twintex, bem como outras unidades na região Norte de Portugal, Espanha e Marrocos.
-      </p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <h2>Informações da empresa</h2>
-      <div class="company-block">
-        <p><strong>Nome legal:</strong> PMV – Máquinas Industriais, S.A.</p>
-        <p><strong>País:</strong> Portugal</p>
-        <p><strong>Localização da sede:</strong> Norte de Portugal (zona industrial)</p>
-        <p><strong>Operação:</strong> Portugal, Espanha e Marrocos</p>
-        <p><strong>Setor:</strong> Facilitação &amp; sourcing para a indústria de moda (B2B)</p>
-        <p class="small">
-          Informação adicional (NIF/NIPC, registo comercial, ano de constituição, etc.) pode ser fornecida mediante
-          solicitação no âmbito de processos formais de procurement, incluindo entidades internacionais.
-        </p>
+<section class="hero">
+  <div class="weave"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Fashion Sourcing &amp; Production Facilitation</span>
+      <h1>Your bridge to <span>Iberia and Morocco's</span> best production floors.</h1>
+      <p class="lead">PMV connects fashion brands with vetted, high-capacity factories across Portugal, Spain and Morocco — handling sourcing, matching and production coordination so your collection ships on time, at the right price, every time.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="cta-btn">Request our factory network</a>
+        <a href="#services" class="cta-btn ghost">See what we do</a>
       </div>
     </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <h2>Contacto</h2>
-      <div class="contact-block">
-        <p><strong>Pessoa de contacto:</strong> Hugo Queirós</p>
-        <p><strong>Telemóvel:</strong> +351 969 962 769</p>
-        <p><strong>E-mail:</strong> <a href="mailto:hugoeduardoqueiros@gmail.com">hugoeduardoqueiros@gmail.com</a></p>
-        <p><strong>Empresa:</strong> PMV – Máquinas Industriais, S.A.</p>
-        <p><strong>Base:</strong> Norte de Portugal · <strong>Operação:</strong> Portugal · Espanha · Marrocos</p>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="container">
-    <div>© <span id="year"></span> PMV – Máquinas Industriais, S.A. Todos os direitos reservados.</div>
-    <div class="footer-note">
-      Esta página faz parte do perfil de fornecedor da PMV para processos de registo e avaliação,
-      incluindo entidades internacionais de procurement como a NSPA.
+    <div class="ticket">
+      <div class="tag-hole"></div>
+      <div class="ticket-title">Facilitator profile</div>
+      <div class="ticket-row"><span class="k">Entity</span><span class="v">PMV – Máquinas Industriais, S.A.</span></div>
+      <div class="ticket-row"><span class="k">Base</span><span class="v">Northern Portugal</span></div>
+      <div class="ticket-row"><span class="k">Operating in</span><span class="v">PT · ES · MA</span></div>
+      <div class="ticket-row"><span class="k">Sector</span><span class="v">B2B Fashion Sourcing</span></div>
+      <div class="ticket-row"><span class="k">Reference partner</span><span class="v">Twintex &amp; regional mills</span></div>
     </div>
   </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">What we do</span>
+      <h2>Four ways we take weight off your sourcing team.</h2>
+      <p>We don't just introduce you to a factory — we stay in the loop from first sample to shipped order.</p>
+    </div>
+  </div>
+  <div class="wrap" style="padding:0;">
+    <div class="services">
+      <div class="service-card">
+        <span class="code">/ SOURCE</span>
+        <div>
+          <h3>Factory Sourcing &amp; Selection</h3>
+          <p>We vet and match production units in Portugal, Spain and Morocco to your product, MOQ and budget.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="code">/ LIAISE</span>
+        <div>
+          <h3>Operational Liaison</h3>
+          <p>We sit between your team and the factory floor, translating specs, timelines and expectations both ways.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="code">/ DEVELOP</span>
+        <div>
+          <h3>Development Support</h3>
+          <p>Pre-costing, sampling and collection development handled hands-on, before a single unit is cut.</p>
+        </div>
+      </div>
+      <div class="service-card">
+        <span class="code">/ SUSTAIN</span>
+        <div>
+          <h3>Price &amp; Service Discipline</h3>
+          <p>Long-term factory relationships built on trust, not one-off deals — so your price holds and service doesn't slip.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">How we work</span>
+      <h2>From brief to shipped order, in four steps.</h2>
+    </div>
+    <div class="process">
+      <div class="process-line">
+        <div class="p-step">
+          <div class="p-num">01</div>
+          <h3>Brief</h3>
+          <p>You share your product, target price and volume.</p>
+        </div>
+        <div class="p-step">
+          <div class="p-num">02</div>
+          <h3>Match</h3>
+          <p>We identify the factories with the right capacity and specialty.</p>
+        </div>
+        <div class="p-step">
+          <div class="p-num">03</div>
+          <h3>Sample</h3>
+          <p>We coordinate costing and samples before you commit.</p>
+        </div>
+        <div class="p-step">
+          <div class="p-num">04</div>
+          <h3>Produce</h3>
+          <p>We stay embedded through production, quality and delivery.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="network" class="network">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Our network</span>
+      <h2>One point of contact. Three production regions.</h2>
+      <p>We work across a corridor of textile expertise built over decades — each region bringing a different strength to your production plan.</p>
+    </div>
+    <div class="route">
+      <div class="stop">
+        <div class="dot"></div>
+        <span class="role">Base &amp; sourcing hub</span>
+        <h3>Portugal</h3>
+        <p>Our home ground — the North's textile heartland, dense with vetted, quality-driven mills.</p>
+      </div>
+      <div class="stop">
+        <div class="dot"></div>
+        <span class="role">Extended capacity</span>
+        <h3>Spain</h3>
+        <p>Additional production capacity and specialty finishing, close enough to move fast.</p>
+      </div>
+      <div class="stop">
+        <div class="dot"></div>
+        <span class="role">Cost-competitive scale</span>
+        <h3>Morocco</h3>
+        <p>Scalable volume production, a short shipping distance from EU distribution.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap why">
+    <div>
+      <span class="eyebrow">Why PMV</span>
+      <h2 style="margin-top:12px; font-size:clamp(1.7rem,3.2vw,2.5rem);">We're the relationship, not just the referral.</h2>
+      <p class="partner-note">PMV collaborates with established industrial groups across the textile and apparel sector — including Twintex — and other production units across Northern Portugal, Spain and Morocco.</p>
+    </div>
+    <ul class="why-list">
+      <li><span class="mk">01</span><div><h4>Direct floor relationships</h4><p>We work with factories we know personally, not a directory of cold contacts.</p></div></li>
+      <li><span class="mk">02</span><div><h4>Single point of contact</h4><p>One person accountable for your production, from first quote to final shipment.</p></div></li>
+      <li><span class="mk">03</span><div><h4>Procurement-ready</h4><p>Built to stand up to formal vendor vetting, including international procurement bodies.</p></div></li>
+      <li><span class="mk">04</span><div><h4>EU time zone, EU standards</h4><p>Portugal-based, with the responsiveness and compliance expectations that implies.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<section class="info-strip">
+  <div class="wrap">
+    <span class="eyebrow">Company information</span>
+    <div class="info-grid" style="margin-top:20px;">
+      <div class="info-cell"><div class="k">Legal name</div><div class="v">PMV – Máquinas Industriais, S.A.</div></div>
+      <div class="info-cell"><div class="k">Country</div><div class="v">Portugal</div></div>
+      <div class="info-cell"><div class="k">HQ location</div><div class="v">Northern Portugal (industrial zone)</div></div>
+      <div class="info-cell"><div class="k">Operating in</div><div class="v">Portugal · Spain · Morocco</div></div>
+    </div>
+    <p class="procurement-note">Additional registration details (tax/registry number, incorporation year, etc.) are available on request for formal procurement processes, including international entities such as NSPA.</p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <span class="eyebrow">Get in touch</span>
+      <h2 style="margin-top:12px; font-size:clamp(1.7rem,3.2vw,2.5rem);">Tell us what you're producing next.</h2>
+      <p style="color:var(--ink-soft); margin-top:16px; max-width:44ch;">Share your product, volumes and timeline — we'll come back with the right factory match, not a generic pitch.</p>
+      <a href="mailto:hugoeduardoqueiros@gmail.com" class="cta-btn" style="margin-top:28px;">Email Hugo directly</a>
+    </div>
+    <div class="contact-card">
+      <div class="ticket-title">Contact</div>
+      <div class="contact-row"><div class="k">Contact person</div><div class="v">Hugo Queirós</div></div>
+      <div class="contact-row"><div class="k">Phone</div><div class="v"><a href="tel:+351969962769">+351 969 962 769</a></div></div>
+      <div class="contact-row"><div class="k">Email</div><div class="v"><a href="mailto:hugoeduardoqueiros@gmail.com">hugoeduardoqueiros@gmail.com</a></div></div>
+      <div class="contact-row"><div class="k">Company</div><div class="v">PMV – Máquinas Industriais, S.A.</div></div>
+      <div class="contact-row"><div class="k">Coverage</div><div class="v">Portugal · Spain · Morocco</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © PMV – Máquinas Industriais, S.A. — All rights reserved.
 </footer>
 
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
 </body>
 </html>
